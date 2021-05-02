@@ -15,10 +15,10 @@ public class Booking {
     LocalDate checkIn;
     LocalDate checkOut;
     Interval interval;
-    @ManyToOne
-    private Room room;
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private Room room;
+//    @ManyToOne
+//    private User user;
 
     public Booking() { } //For JPA Entity;
 

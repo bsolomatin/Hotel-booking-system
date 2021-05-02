@@ -14,8 +14,8 @@ public class Room {
     int flat;
     int numberOfBed;
     int price;
-    @OneToMany(mappedBy = "room")
-    private Set<Booking> bookingSet = new HashSet<>();
+//    @OneToMany(mappedBy = "room")
+//    private Set<Booking> bookingSet = new HashSet<>();
 
     public Room() { } //for JPA
 

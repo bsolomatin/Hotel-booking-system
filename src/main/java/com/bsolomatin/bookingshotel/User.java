@@ -13,8 +13,8 @@ public class User {
     private Long id;
     String firstName;
     String lastName;
-    @OneToMany(mappedBy = "user")
-    Set<Booking> bkSet = new HashSet<>();
+//    @OneToMany(mappedBy = "user")
+//    Set<Booking> bkSet = new HashSet<>();
 
     public User() { } //For JPA Entity
 
