@@ -1,7 +1,7 @@
-package controllers;
+package com.bsolomatin.bookingshotel.controller;
 
-import com.bsolomatin.bookingshotel.Room;
-import com.bsolomatin.bookingshotel.RoomsRepository;
+import com.bsolomatin.bookingshotel.domain.Room;
+import com.bsolomatin.bookingshotel.repository.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

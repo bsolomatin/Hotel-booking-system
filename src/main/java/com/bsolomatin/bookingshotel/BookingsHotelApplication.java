@@ -1,10 +1,11 @@
 package com.bsolomatin.bookingshotel;
 
+import com.bsolomatin.bookingshotel.domain.Room;
+import com.bsolomatin.bookingshotel.repository.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
@@ -19,6 +20,7 @@ public class BookingsHotelApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.roomsRepository.save(new Room(1L,2,3,4));
+        Room room = new Room(1, 2, 3);
+        this.roomsRepository.save(room);
     }
 }

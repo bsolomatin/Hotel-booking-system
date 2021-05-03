@@ -1,4 +1,4 @@
-package com.bsolomatin.bookingshotel;
+package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,10 +6,12 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 @Entity
+@Table(name="user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="Id", unique = true, nullable = false)
     private Long id;
     String firstName;
     String lastName;
@@ -18,8 +20,7 @@ public class User {
 
     public User() { } //For JPA Entity
 
-    public User(Long id, String firstName, String lastName) {
-        this.id = id;
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

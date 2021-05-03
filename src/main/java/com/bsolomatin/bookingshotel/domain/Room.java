@@ -1,15 +1,16 @@
-package com.bsolomatin.bookingshotel;
+package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringJoiner;
-
 @Entity
+@Table(name="room")
 public class Room {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    //@Column(name="Id", unique = true, nullable = false)
     private Long id;
     int flat;
     int numberOfBed;
@@ -19,8 +20,7 @@ public class Room {
 
     public Room() { } //for JPA
 
-    public Room(Long id, int flat, int numberOfBed, int price) {
-        this.id = id;
+    public Room(int flat, int numberOfBed, int price) {
         this.flat = flat;
         this.numberOfBed = numberOfBed;
         this.price = price;

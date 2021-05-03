@@ -1,4 +1,4 @@
-package com.bsolomatin.bookingshotel;
+package com.bsolomatin.bookingshotel.domain;
 
 import org.joda.time.DateMidnight;
 import org.joda.time.Interval;
@@ -7,9 +7,11 @@ import javax.persistence.*;
 import java.util.StringJoiner;
 
 @Entity
+@Table(name="booking")
 public class Booking {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    //@Column(name="Id", unique = true, nullable = false)
     private Long id;
     boolean isConfirm;
     LocalDate checkIn;
@@ -22,8 +24,7 @@ public class Booking {
 
     public Booking() { } //For JPA Entity;
 
-    public Booking(Long id, LocalDate checkIn, LocalDate checkOut, boolean isConfirm) {
-        this.id = id;
+    public Booking(LocalDate checkIn, LocalDate checkOut, boolean isConfirm) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.isConfirm = isConfirm;
