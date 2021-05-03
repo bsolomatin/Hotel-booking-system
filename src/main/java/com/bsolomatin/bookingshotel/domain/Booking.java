@@ -16,11 +16,14 @@ public class Booking {
     @GeneratedValue(strategy= GenerationType.AUTO)
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
-    boolean isConfirm;
-    LocalDate checkIn;
-    LocalDate checkOut;
-    Interval interval;
-//    @ManyToOne
+    private boolean isConfirm;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private Interval interval;
+    private Integer userId;
+    private Integer roomId;
+
+    //    @ManyToOne
 //    private Room room;
 //    @ManyToOne
 //    private User user;
@@ -41,6 +44,46 @@ public class Booking {
     @Id
     public Long getId() {
         return Id;
+    }
+
+    public boolean isConfirm() {
+        return isConfirm;
+    }
+
+    public void setConfirm(boolean confirm) {
+        isConfirm = confirm;
+    }
+
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(LocalDate checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(LocalDate checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public Interval getInterval() {
+        return interval;
+    }
+
+    public void setInterval(Interval interval) {
+        this.interval = interval;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public Integer getRoomId() {
+        return roomId;
     }
 
     @Override

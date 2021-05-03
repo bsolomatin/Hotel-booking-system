@@ -15,10 +15,9 @@ public class Room {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long Id;
     //@Column(name="Id", unique = true, nullable = false)
-
-    int flat;
-    int numberOfBed;
-    int price;
+    private int flat;
+    private int numberOfBed;
+    private int price;
 //    @OneToMany(mappedBy = "room")
 //    private Set<Booking> bookingSet = new HashSet<>();
 
@@ -46,4 +45,27 @@ public class Room {
         return Id;
     }
 
+    public int getFlat() {
+        return flat;
+    }
+
+    public void setFlat(int flat) {
+        this.flat = flat;
+    }
+
+    public int getNumberOfBed() {
+        return numberOfBed;
+    }
+
+    public void setNumberOfBed(int numberOfBed) {
+        this.numberOfBed = numberOfBed;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

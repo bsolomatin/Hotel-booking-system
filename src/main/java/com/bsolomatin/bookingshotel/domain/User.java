@@ -13,8 +13,8 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
-    String firstName;
-    String lastName;
+    private String firstName;
+    private String lastName;
 //    @OneToMany(mappedBy = "user")
 //    Set<Booking> bkSet = new HashSet<>();
 
@@ -31,6 +31,22 @@ public class User {
     @Id
     public Long getId() {
         return Id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override

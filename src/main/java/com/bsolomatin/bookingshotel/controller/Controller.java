@@ -1,7 +1,9 @@
 package com.bsolomatin.bookingshotel.controller;
 
 import com.bsolomatin.bookingshotel.domain.Room;
+import com.bsolomatin.bookingshotel.repository.BookingsRepository;
 import com.bsolomatin.bookingshotel.repository.RoomsRepository;
+import com.bsolomatin.bookingshotel.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +16,14 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private RoomsRepository roomsRepository;
+    private RoomService roomService;
 
     @GetMapping("rooms")
-    public List<Room> getRooms() {
-        return this.roomsRepository.findAll();
+    public String getRooms() {
+        roomService.findAll();
+        return "";
     }
+
+    @Autowired
+    private BookingsRepository bookingsRepository;
 }
