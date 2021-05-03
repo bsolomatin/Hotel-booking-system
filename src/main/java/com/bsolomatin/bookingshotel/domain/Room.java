@@ -1,17 +1,21 @@
 package com.bsolomatin.bookingshotel.domain;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.StringJoiner;
 @Entity
-@Table(name="room")
 public class Room {
 
+    @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long Id;
     //@Column(name="Id", unique = true, nullable = false)
-    private Long id;
+
     int flat;
     int numberOfBed;
     int price;
@@ -26,19 +30,20 @@ public class Room {
         this.price = price;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("|", "Room [", "]");
-        joiner.add("Id =" + id).add("Flat = " + flat).add("Number of bed = " + numberOfBed).add("Price = " + price);
+        joiner.add("Id =" + Id).add("Flat = " + flat).add("Number of bed = " + numberOfBed).add("Price = " + price);
         return joiner.toString();
     }
+
+    public void setId(Long id) {
+        this.Id = id;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
 }

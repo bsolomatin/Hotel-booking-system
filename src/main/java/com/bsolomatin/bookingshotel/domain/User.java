@@ -1,18 +1,18 @@
 package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.data.annotation.Id;
 import java.util.StringJoiner;
 
 @Entity
 @Table(name="user")
 public class User {
 
+    @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     //@Column(name="Id", unique = true, nullable = false)
-    private Long id;
+    private Long Id;
     String firstName;
     String lastName;
 //    @OneToMany(mappedBy = "user")
@@ -24,20 +24,19 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     @Id
     public Long getId() {
-        return id;
+        return Id;
     }
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("|", "User [", "]");
-        joiner.add("Id = " + id).add("First name = " + firstName).add("Last name =" + lastName);
+        joiner.add("Id = " + Id).add("First name = " + firstName).add("Last name =" + lastName);
         return joiner.toString();
     }
 }
