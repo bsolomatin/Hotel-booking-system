@@ -6,9 +6,12 @@ import org.joda.time.Interval;
 import org.joda.time.ReadableDateTime;
 import org.joda.time.ReadableInstant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class BookingServiceImpl implements BookingService{
 
     @Autowired
@@ -24,27 +27,17 @@ public class BookingServiceImpl implements BookingService{
         return bookingsRepository.findAll();
     }
 
-    @Override
-    public void saveBooking(Booking booking) {
-        List<Booking> list = bookingsRepository.findAll();
-        list.stream().filter(item -> item.getRoomId() == booking.getRoomId());
-        boolean flag = false;
-        for(Booking booking1 : list) {
-            if(booking1.getInterval().overlap(booking.getInterval()) != null) {
-                flag = true;
-                break;
-            }
-        }
-        if(!flag) {
-            bookingsRepository.saveAndFlush(booking);
-        } else {
-            //TODO Exception
-        }
-    }
+
 
     @Override
     public void deleteById(Long id) {
         bookingsRepository.deleteById(id);
 
     }
+
+    public boolean canReserve(Long id, LocalDate d1, LocalDate d2) {
+        return bookingsRepository.bookingListById(id,d1,d2).size() == 0;
+    }
+
+
 }

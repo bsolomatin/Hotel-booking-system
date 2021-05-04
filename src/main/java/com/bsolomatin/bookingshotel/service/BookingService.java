@@ -6,6 +6,5 @@ import java.util.List;
 public interface BookingService {
     Booking findById(Long id);
     List<Booking> findAll();
-    void saveBooking(Booking booking);
     void deleteById(Long id);
 }

@@ -1,10 +1,11 @@
 package com.bsolomatin.bookingshotel.domain;
 
-import org.joda.time.DateMidnight;
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+
 import javax.persistence.*;
 import org.springframework.data.annotation.Id;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.StringJoiner;
 
 @Entity
@@ -19,7 +20,6 @@ public class Booking {
     private boolean isConfirm;
     private LocalDate checkIn;
     private LocalDate checkOut;
-    private Interval interval;
     private Integer userId;
     private Integer roomId;
 
@@ -30,11 +30,12 @@ public class Booking {
 
     public Booking() { } //For JPA Entity;
 
-    public Booking(LocalDate checkIn, LocalDate checkOut, boolean isConfirm) {
+    public Booking(boolean isConfirm, LocalDate checkIn, LocalDate checkOut, Integer userId, Integer roomId) {
+        this.isConfirm = isConfirm;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.isConfirm = isConfirm;
-        interval = new Interval(new DateMidnight(checkIn), new DateMidnight(checkOut));
+        this.userId = userId;
+        this.roomId = roomId;
     }
 
     public void setId(Long id) {
@@ -70,20 +71,20 @@ public class Booking {
         this.checkOut = checkOut;
     }
 
-    public Interval getInterval() {
-        return interval;
-    }
-
-    public void setInterval(Interval interval) {
-        this.interval = interval;
-    }
-
     public Integer getUserId() {
         return userId;
     }
 
     public Integer getRoomId() {
         return roomId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
     @Override

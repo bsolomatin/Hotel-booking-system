@@ -15,6 +15,10 @@ public class User {
     private Long Id;
     private String firstName;
     private String lastName;
+    private String login;
+    private String hashPassword;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 //    @OneToMany(mappedBy = "user")
 //    Set<Booking> bkSet = new HashSet<>();
 
@@ -47,6 +51,18 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     @Override

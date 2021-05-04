@@ -3,17 +3,19 @@ package com.bsolomatin.bookingshotel.service;
 import com.bsolomatin.bookingshotel.domain.User;
 import com.bsolomatin.bookingshotel.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements  UserService{
 
     @Autowired
     private UsersRepository usersRepository;
 
     @Override
-    public User findById(Long id) {
-        return usersRepository.getOne(id);
+    public User findByUserName(String login) {
+        return usersRepository.findByUserName(login);
     }
 
     @Override
