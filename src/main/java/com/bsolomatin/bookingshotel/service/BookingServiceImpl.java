@@ -2,9 +2,6 @@ package com.bsolomatin.bookingshotel.service;
 
 import com.bsolomatin.bookingshotel.domain.Booking;
 import com.bsolomatin.bookingshotel.repository.BookingsRepository;
-import org.joda.time.Interval;
-import org.joda.time.ReadableDateTime;
-import org.joda.time.ReadableInstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +15,8 @@ public class BookingServiceImpl implements BookingService{
     private BookingsRepository bookingsRepository;
 
     @Override
-    public Booking findById(Long id) {
-        return bookingsRepository.getOne(id);
+    public Booking findByBookId(Long id) {
+        return bookingsRepository.findByBookingId(id);
     }
 
     @Override

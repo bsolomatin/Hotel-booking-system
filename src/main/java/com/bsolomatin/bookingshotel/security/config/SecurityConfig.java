@@ -24,20 +24,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http
-                .authorizeRequests()
-                    .antMatchers("/").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .permitAll();
-        http
-                .csrf().disable();
-        //security.httpBasic().disable();
+//        http
+//                .authorizeRequests()
+//                    .antMatchers("/").permitAll()
+//                    .anyRequest().authenticated()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .permitAll()
+//                .and()
+//                    .logout()
+//                    .permitAll();
+        http.httpBasic().disable();
+        http.csrf().disable();
 
     }
 
@@ -46,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("Select login, hashPassword From booking Where login=?")
+                .usersByUsernameQuery("Select login, hash_Password From hotel.user Where login=?")
                 .authoritiesByUsernameQuery("Select u.login, ur.roles From user u INNER JOIN user_role ur on u.id = ur.user_id Where u.login=?");
     }
 }

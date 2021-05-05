@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div>Hello, user</div>
-<a href="/register">Register</a>
+<div id="test_booking">
+</div>
+<script type="text/javascript">
+    let block = document.getElementById("test_booking")
+
+    $.get({
+        url: 'api/bookings',
+        success: function(data) {
+            console.warn(data);
+            let table = "<table border='1'>"
+            for(let i = 0; i < data.length; i++) {
+                table = table + "<tr><td>" + data[i].id + "<td></td>" + data[i].checkIn + "<td></td>" + data[i].checkOut + "</td></tr>"
+            }
+            table=table+"</table>"
+            block.append(table);
+        }
+    })
+</script>
 </body>
 </html>

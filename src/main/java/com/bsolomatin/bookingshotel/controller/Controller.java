@@ -8,6 +8,7 @@ import com.bsolomatin.bookingshotel.service.BookingService;
 import com.bsolomatin.bookingshotel.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,14 +25,18 @@ public class Controller {
     private BookingService bookingService;
 
     @GetMapping("rooms")
-    public String getRooms() {
-        roomService.findAll();
-        return "";
+    public List<Room> getRooms() {
+        return roomService.findAll();
     }
 
     @GetMapping("bookings")
     public List<Booking> getBookings() {
         return bookingService.findAll();
+    }
+
+    @GetMapping("bookings/{id}")
+    public String getOne(@PathVariable String id) {
+        return bookingService.findByBookId(Long.valueOf(id)).toString();
     }
 
     @Autowired
