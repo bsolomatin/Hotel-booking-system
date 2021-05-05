@@ -2,10 +2,12 @@ package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
 import org.springframework.data.annotation.Id;
+import java.util.Set;
 import java.util.StringJoiner;
 
 @Entity
-@Table(name="user")
+//@Table(name = "\"user\"")
+@Table(name="usr")
 public class User {
 
     @javax.persistence.Id
@@ -13,62 +15,73 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
-    private String firstName;
-    private String lastName;
-    private String login;
-    private String hashPassword;
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
-//    @OneToMany(mappedBy = "user")
-//    Set<Booking> bkSet = new HashSet<>();
+
+    @Column(name="username")
+    private String username;
+
+    @Column(name="password")
+    private String password;
+
+    private boolean enabled = true;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+    @Enumerated(EnumType.STRING)
+    Role roles;
+
+
 
     public User() { } //For JPA Entity
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    public void setId(Long id) {
-        this.Id = id;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    @Id
+
     public Long getId() {
         return Id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(Long id) {
+        Id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public String getLogin() {
-        return login;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getHashPassword() {
-        return hashPassword;
+    public Role getRoles() {
+        return roles;
     }
 
-    public Role getRole() {
-        return role;
+    public void setRoles(Role roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("|", "User [", "]");
-        joiner.add("Id = " + Id).add("First name = " + firstName).add("Last name =" + lastName);
+        joiner.add("Id = " + Id).add("Username = " + username);
         return joiner.toString();
     }
 }
