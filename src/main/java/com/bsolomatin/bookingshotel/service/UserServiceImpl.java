@@ -1,16 +1,13 @@
 package com.bsolomatin.bookingshotel.service;
 
 
-import com.bsolomatin.bookingshotel.domain.Role;
 import com.bsolomatin.bookingshotel.domain.User;
 import com.bsolomatin.bookingshotel.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements  UserService{
@@ -30,6 +27,7 @@ public class UserServiceImpl implements  UserService{
     public List<User> findAll() {
         return usersRepository.findAll();
     }
+
 
     @Override
     public void saveUser(User user) {

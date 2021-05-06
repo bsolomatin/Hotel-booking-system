@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <title>Spring Security Example </title>
 </head>
 <body>
+<div th:if="${param.error}">
+  Не найдена комбинация логина и пароля, попробуйте снова
+</div>
+<div th:if="${param.logout}">
+  Вы вышли из своего аккаунта
+</div>
 <form action="/login" method="post">
-  <div><label> User Name : <input type="text" name="username"/> </label></div>
-  <div><label> Password: <input type="password" name="password"/> </label></div>
-  <div><input type="submit" value="Sign In"/></div>
+  <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>
+  <div><label> Пароль: <input type="password" name="password"/> </label></div>
+  <div><input type="submit" value="Войти"/></div>
 </form>
-<a href="/registration">Sign up</a>
+<a href="/registration">Зарегистрироваться</a>
 </body>
 </html>
