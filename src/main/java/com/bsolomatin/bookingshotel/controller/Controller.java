@@ -2,11 +2,14 @@ package com.bsolomatin.bookingshotel.controller;
 
 import com.bsolomatin.bookingshotel.domain.Booking;
 import com.bsolomatin.bookingshotel.domain.Room;
+import com.bsolomatin.bookingshotel.domain.User;
 import com.bsolomatin.bookingshotel.repository.BookingsRepository;
 import com.bsolomatin.bookingshotel.repository.RoomsRepository;
 import com.bsolomatin.bookingshotel.service.BookingService;
 import com.bsolomatin.bookingshotel.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,4 +44,5 @@ public class Controller {
 
     @Autowired
     private BookingsRepository bookingsRepository;
+
 }

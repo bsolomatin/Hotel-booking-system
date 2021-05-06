@@ -1,16 +1,17 @@
 package com.bsolomatin.bookingshotel.service;
 
 
+import com.bsolomatin.bookingshotel.domain.Role;
 import com.bsolomatin.bookingshotel.domain.User;
 import com.bsolomatin.bookingshotel.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements  UserService, UserDetailsService {
@@ -18,8 +19,8 @@ public class UserServiceImpl implements  UserService, UserDetailsService {
     @Autowired
     private UsersRepository usersRepository;
 
-    //@Autowired
-    //private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User findByUserName(String login) {
@@ -31,9 +32,11 @@ public class UserServiceImpl implements  UserService, UserDetailsService {
         return usersRepository.findAll();
     }
 
-
     @Override
     public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Role.USER);
+        user.setEnabled(true);
         usersRepository.saveAndFlush(user);
     }
 

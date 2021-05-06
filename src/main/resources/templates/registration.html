@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Spring Security Example </title>
+  <title>Регистрация</title>
 </head>
 <body>
+<div th:insert="parts/navbar :: menu"></div>
 Регистрация
 <form action="/registration" method="post">
   <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>

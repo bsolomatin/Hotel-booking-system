@@ -28,8 +28,6 @@ public class SignUpController {
             return "registration";
         }
 
-        user.setRoles(Role.USER);
-        user.setEnabled(true);
         userService.saveUser(user);
         return "redirect:/login";
     }
