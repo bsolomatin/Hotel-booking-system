@@ -2,13 +2,18 @@ package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.StringJoiner;
 
 @Entity
 //@Table(name = "\"user\"")
 @Table(name="usr")
-public class User {
+public class User implements UserDetails {
 
     @javax.persistence.Id
     @Id
@@ -58,8 +63,28 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(getRoles());
     }
 
     public String getPassword() {

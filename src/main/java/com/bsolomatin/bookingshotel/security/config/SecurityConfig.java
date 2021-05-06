@@ -1,5 +1,7 @@
 package com.bsolomatin.bookingshotel.security.config;
 
+import com.bsolomatin.bookingshotel.service.UserService;
+import com.bsolomatin.bookingshotel.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private UserServiceImpl userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
@@ -43,10 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("Select username, password, enabled From hotel.usr Where username=?")
-                .authoritiesByUsernameQuery("Select username, roles From hotel.usr Where username=?");
-        //.authoritiesByUsernameQuery("Select u.username, ur.authority From hotel.usr u Inner Join user_roles ur on u.id = ur.user_id Where u.username = ?");
+//        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(NoOpPasswordEncoder.getInstance())
+//                .usersByUsernameQuery("Select username, password, enabled From hotel.usr Where username=?")
+//                .authoritiesByUsernameQuery("Select username, roles From hotel.usr Where username=?");
+        auth.userDetailsService(userService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
 }

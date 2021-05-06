@@ -21,18 +21,18 @@ public class AdminController {
         return "userList";
     }
 
-//    @GetMapping("users/{id}")
-//    public String userEditForm(@PathVariable String id, Model model) {
-//        User user = userService.findById(id);
-//        System.out.println(user.toString());
-//        model.addAttribute("user", user);
-//        return "userEdit";
-//    }
+    @GetMapping("users/{id}")
+    public String userEditForm(@PathVariable String id, Model model) {
+        User user = userService.findById(Long.valueOf(id));
+        model.addAttribute("user", user);
+        return "userEdit";
+    }
 
     @PostMapping("user")
-    public String userSave(@RequestParam String username, @RequestParam("userId") User user) {
+    public String userSave(@RequestParam String username, @RequestParam("userId") String userId) {
+        User user = userService.findById(Long.valueOf(userId));
         user.setUsername(username);
         userService.saveUser(user);
-        return "redirect:/admin/users";
+        return "redirect:/users";
     }
 }

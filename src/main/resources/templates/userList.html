@@ -18,7 +18,9 @@
     <td th:text="${u.username}"></td>
     <td th:text="${u.password}"></td>
     <td th:text="${u.roles}"></td>
-    <td><a href="/admin/users/${u.username}">Редактировать</a></td>
+    <td>
+      <a th:href="@{users/{id}(id=${u.id})}">Редактировать</a>
+    </td>
   </tr>
 </table>
 </body>

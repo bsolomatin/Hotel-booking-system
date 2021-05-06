@@ -5,9 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text="|${Редактирование пользователя ${user.id}|"></p>
+<p th:text="${'Редактирование пользователя №' + user.id}"></p>
 <form action="/admin/user" method="post">
-  <input type="text" name="username" value="">
+    <label for="username">Введите новое имя пользователя</label>
+  <input type="text" name="username" id="username" value="">
+    <label for="password">Введите новый пароль пользователя</label>
+    <input type="text" name="password" id="password" value="">
+    <input type="hidden" th:value="${user.id}" name="userId" id="userId"/>
   <button type="submit">Сохранить</button>
 </form>
 </body>

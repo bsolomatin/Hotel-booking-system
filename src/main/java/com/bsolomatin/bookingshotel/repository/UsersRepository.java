@@ -12,6 +12,7 @@ public interface UsersRepository extends JpaRepository<User, Long> {
     //User findByUsername(@Param("log") String log);
 
     User findByUsername(String login);
+    User getOne(Long id);
 
     //@Query(value = "INSERT INTO hotel.user VALUES(:id, :username, :password)", nativeQuery = true)
     //void saveNewUser(@Param("id") int id, @Param("username")String username, @Param("password")String password);
