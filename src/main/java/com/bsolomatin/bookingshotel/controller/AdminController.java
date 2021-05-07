@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 @PreAuthorize("hasAuthority('ADMIN')")
@@ -15,10 +17,14 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @GetMapping()
+    public String getAdmin() {
+        return "admin";
+    }
+
     @GetMapping("users")
-    public String userList(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "userList";
+    public List<User> userList(Model model) {
+        return userService.findAll();
     }
 
     @GetMapping("users/{id}")

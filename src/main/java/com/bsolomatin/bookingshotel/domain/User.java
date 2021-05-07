@@ -1,6 +1,9 @@
 package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +24,8 @@ public class User implements UserDetails {
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
 
+    @NotEmpty(message = "Имя пользователя не может быть пустым")
+    @Size(min = 2, max = 10, message = "Введите имя пользователя от 2-х до 10-ти символов")
     @Column(name="username")
     private String username;
 

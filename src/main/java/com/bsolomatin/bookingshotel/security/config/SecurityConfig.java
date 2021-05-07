@@ -1,21 +1,17 @@
 package com.bsolomatin.bookingshotel.security.config;
 
-import com.bsolomatin.bookingshotel.service.UserService;
 import com.bsolomatin.bookingshotel.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -33,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration", "/login").permitAll()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                    .antMatchers("/", "/registration", "/login", "/bookings").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -42,10 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                     .permitAll();
-//        // //http.httpBasic().disable();
     http.csrf().disable();
 
     }
+
+
 
     @Bean
     public static PasswordEncoder getPasswordEncoder() {
@@ -59,5 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .authoritiesByUsernameQuery("Select username, roles From hotel.usr Where username=?");
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
+
+
 
 }

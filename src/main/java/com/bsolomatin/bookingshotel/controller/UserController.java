@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/profile")
+    @GetMapping("profile")
     public String profile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("user", user);
         return "profile";

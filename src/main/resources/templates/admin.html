@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="/parts/navbar :: menu"></div>
+<p>Эта страница - панель администратора</p>
+<div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-5">
+        <ul class="nav">
+            <li class="admin nav-item" id="users">
+                <a class="nav-link">Пользователи</a>
+            </li>
+            <li class="admin nav-item" id="rooms">
+                <a class="nav-link">Комнаты</a>
+            </li>
+            <li class="admin nav-item" id="bookings">
+                <a class="nav-link">Бронирования</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/Main.js}"></script>
+</html>

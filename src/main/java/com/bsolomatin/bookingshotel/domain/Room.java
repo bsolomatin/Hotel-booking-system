@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.Min;
 import java.util.StringJoiner;
 @Entity
 public class Room {
@@ -14,9 +15,15 @@ public class Room {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long Id;
-    //@Column(name="Id", unique = true, nullable = false)
+    //@Column(name="Id", unique = true, nullable = false)"
+
+    @Min(value = 1, message = "Минимальный этаж - 1")
     private int flat;
+
+    @Min(value = 1, message = "Минимум одна кровать")
     private int numberOfBed;
+
+    @Min(value = 1000, message = "Минимальный прайс 1000")
     private int price;
 //    @OneToMany(mappedBy = "room")
 //    private Set<Booking> bookingSet = new HashSet<>();
