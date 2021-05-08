@@ -9,19 +9,16 @@
 </head>
 <body>
 <div th:insert="parts/navbar :: menu"></div>
-<div id="test_booking">
-</div>
-<div class="row">
-    <div class="col-2">
-        <form method="POST">
-            <input type="text" id="startDate">
-            <input type="text" id="endDate">
-        </form>
+<div id="test_booking mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row row-cols-1 row-cols-md-3 g-4 cardBody">
+            </div>
+        </div>
+        <div class="col-2"></div>
     </div>
 </div>
-<button id="btn" value="Test"></button>
-<input type="text" id="from" />
-<input type="text" id="to" />
 <!--<script type="text/javascript">-->
 <!--    let block = document.getElementById("test_booking")-->
 
@@ -42,7 +39,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
-
+<script src="text/javascript" th:src="@{/js/Requests.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 </body>
 </html>
