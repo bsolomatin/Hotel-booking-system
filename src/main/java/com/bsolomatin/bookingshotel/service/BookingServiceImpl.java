@@ -3,6 +3,8 @@ package com.bsolomatin.bookingshotel.service;
 import com.bsolomatin.bookingshotel.domain.Booking;
 import com.bsolomatin.bookingshotel.repository.BookingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,16 +22,19 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+    public void deleteById(Long id) {
+        bookingsRepository.deleteById(id);
+
+    }
+
+    @Override
     public List<Booking> findAll() {
         return bookingsRepository.findAll();
     }
 
-
-
     @Override
-    public void deleteById(Long id) {
-        bookingsRepository.deleteById(id);
-
+    public List<Booking> getReservationByRoom(int roomId) {
+        return bookingsRepository.getReservationByRoom(roomId);
     }
 
     public boolean canReserve(Long id, LocalDate d1, LocalDate d2) {

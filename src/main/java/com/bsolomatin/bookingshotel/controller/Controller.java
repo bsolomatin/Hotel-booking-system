@@ -7,7 +7,12 @@ import com.bsolomatin.bookingshotel.repository.BookingsRepository;
 import com.bsolomatin.bookingshotel.repository.RoomsRepository;
 import com.bsolomatin.bookingshotel.service.BookingService;
 import com.bsolomatin.bookingshotel.service.RoomService;
+import com.bsolomatin.bookingshotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +31,12 @@ public class Controller {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("users")
+    public List<User> getUsers() {return userService.findAll();}
 
     @GetMapping("rooms")
     public List<Room> getRooms() {

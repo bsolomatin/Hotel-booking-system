@@ -10,20 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
-    public String getAdmin() {
-        return "admin";
-    }
-
     @GetMapping("users")
-    public List<User> userList(Model model) {
+    public List<User> userList() {
         return userService.findAll();
     }
 
