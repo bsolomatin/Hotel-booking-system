@@ -3,10 +3,7 @@ $(function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     sendRequest("GET", `rooms`)
-        .then((data) => {
-            showRooms(JSON.parse(data));
-            console.warn(JSON.parse(data));
-        })
+        .then((data) => showRooms(JSON.parse(data)))
         //.catch((error) => sendRequest("GET", "/error"));
 })
 
@@ -23,12 +20,24 @@ function showRooms(data) {
                         <li class="list-group-item">Цена за сутки, рублей: ${data[i].price}</li>
                     </ul>
                     <p class="card-text">Кликните по кнопке ниже, чтобы получить больше информации</p>
-                    <a href="room/${i}" class="btn btn-primary">Подробнее</a>
+                    <button type="button" id="${data[i].id}" class="btn btn-primary" onclick="modalClick(this)">Подробнее</input>      
                 </div>
             </div>
         </div>`);
     }
 }
+
+function modalClick(btn) {
+    $("#roomId").val(`${btn.id}`);
+    sendRequest("GET", `bookings/${btn.id}`)
+        .then((data) => {
+            console.warn(data);
+            createReservationIntervals(JSON.parse(data))
+        })
+    $("#exampleModal").modal('toggle');
+    //$(".modalBody").text($(this).attr("id"));
+}
+
 
 $(".admin.nav-item").click(function () {
     sendRequest("GET", `admin/${$(this).attr("id")}`)
@@ -36,7 +45,6 @@ $(".admin.nav-item").click(function () {
         //$.fn.refreshTable(JSON.parse(data)))
         .catch((error) => new Error());
 })
-
 
 $.fn.refreshTable = function (data) {
     $("#table").empty();

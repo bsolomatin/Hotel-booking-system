@@ -15,11 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,11 +47,23 @@ public class Controller {
     }
 
     @GetMapping("bookings/{id}")
-    public String getOne(@PathVariable String id) {
-        return bookingService.findByBookId(Long.valueOf(id)).toString();
+    public List<Booking> getReservations(@PathVariable String id) {
+        return bookingService.getReservationByRoom(Integer.valueOf(id));
     }
 
-    @Autowired
-    private BookingsRepository bookingsRepository;
+    @GetMapping("room/{id}")
+    public Room getRoom(@PathVariable String id) { return roomService.findById(Long.valueOf(id)); }
+
+    @PostMapping("/block")
+    public void getInfo(@RequestParam("roomId") String id, @RequestParam("from")LocalDate from,
+                        @RequestParam("to") LocalDate to, @AuthenticationPrincipal User user) {
+        System.err.println("Id = " + id);
+        System.err.println("From date = " + from);
+        System.err.println("To date = " + to);
+        System.err.println("User = " + user.toString());
+        Room room = roomService.findById(Long.valueOf(id));
+
+    }
+
 
 }
