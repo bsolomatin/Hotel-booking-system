@@ -1,5 +1,4 @@
-$(function() {
-})
+
 
 document.addEventListener("DOMContentLoaded", function() {
     sendRequest("GET", `rooms`)
@@ -19,8 +18,8 @@ function showRooms(data) {
                         <li class="list-group-item">Количество кроватей: ${data[i].numberOfBed}</li>
                         <li class="list-group-item">Цена за сутки, рублей: ${data[i].price}</li>
                     </ul>
-                    <p class="card-text">Кликните по кнопке ниже, чтобы получить больше информации</p>
-                    <button type="button" id="${data[i].id}" class="btn btn-primary" onclick="modalClick(this)">Подробнее</input>      
+                    <p class="card-text">Кликните по кнопке ниже, чтобы проверить наличие свободных дат</p>
+                    <button type="button" id="${data[i].id}" class="btn btn-primary" onclick="modalClick(this)">Бронирование</input>      
                 </div>
             </div>
         </div>`);
@@ -30,13 +29,14 @@ function showRooms(data) {
 function modalClick(btn) {
     $("#roomId").val(`${btn.id}`);
     sendRequest("GET", `bookings/${btn.id}`)
-        .then((data) => {
-            console.warn(data);
-            createReservationIntervals(JSON.parse(data))
-        })
+        .then((data) => createReservationIntervals(JSON.parse(data)))
     $("#exampleModal").modal('toggle');
-    //$(".modalBody").text($(this).attr("id"));
 }
+
+// $('#blockForm').on('submit', function(event) {
+//     event.preventDefault();
+//
+// })
 
 
 $(".admin.nav-item").click(function () {

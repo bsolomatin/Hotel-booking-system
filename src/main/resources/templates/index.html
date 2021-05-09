@@ -27,13 +27,13 @@
                 <h5 class="modal-title" id="exampleModalLabel">Бронирование</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="/block">
+            <form method="POST" action="/block" id="blockForm">
             <div class="modal-body">
                     <label for="from" class="form-label">Дата заезда</label>
-                    <input type="text" id="from" class="datepicker form-control" name="from" required/>
-                    <label for="to" class="form-label">Дата выезда</label>
-                    <input type="text" id="to" class="datepicker form-control" name="to" required/>
-                    <input type="hidden" id="roomId" value=""/>
+                    <input type="text" data-date-format="yyyy-mm-dd" id="from" class="datepicker form-control" name="from" required/>
+                    <label for="to"  class=" form-label">Дата выезда</label>
+                    <input type="text" data-date-format="yyyy-mm-dd" id="to" class="datepicker form-control" name="to" required/>
+                    <input type="hidden" id="roomId" name="roomId" value=""/>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Забронировать</button>

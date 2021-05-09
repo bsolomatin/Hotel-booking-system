@@ -29,7 +29,7 @@ function createReservationIntervals(data) {
 
 $(function () {
     $("#from").datepicker({
-        //dateFormat: "yyyy-mm-dd",
+        dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
             for (let i = 0; i < reservations.length; i++) {
                 let from = new Date(reservations[i][0]);
@@ -44,7 +44,7 @@ $(function () {
     })
 
     $("#to").datepicker({
-        //dateFormat: "yyyy-mm-dd",
+        dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
             for (let i = 0; i < reservations.length; i++) {
                 let from = new Date(reservations[i][0]);

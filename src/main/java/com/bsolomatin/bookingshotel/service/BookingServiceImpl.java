@@ -28,6 +28,11 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
+    public void save(Booking booking) {
+        bookingsRepository.saveAndFlush(booking);
+    }
+
+    @Override
     public List<Booking> findAll() {
         return bookingsRepository.findAll();
     }
