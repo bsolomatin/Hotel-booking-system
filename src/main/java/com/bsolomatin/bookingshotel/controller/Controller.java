@@ -58,17 +58,17 @@ public class Controller {
     public Room getRoom(@PathVariable String id) { return roomService.findById(Long.valueOf(id)); }
 
     //@ResponseStatus(code = HttpStatus.CREATED) // 201
-    @PostMapping("block")
-    public void addNewReservation(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        int roomId = Integer.parseInt(request.getParameter("roomId"));
-        String[] from = request.getParameter("from").split("-");
-        String[] to = request.getParameter("to").split("-" );
-        LocalDate fromDate = LocalDate.of(Integer.parseInt(from[0]), Integer.parseInt(from[1]), Integer.parseInt(from[2]));
-        LocalDate toDate = LocalDate.of(Integer.parseInt(to[0]), Integer.parseInt(to[1]), Integer.parseInt(to[2]));
-        Booking booking = new Booking(true, fromDate, toDate, user.getId().intValue(), roomId);
-        bookingService.save(booking);
-        //System.out.println("Done!");
-    }
+//    @PostMapping("block")
+//    public void addNewReservation(HttpServletRequest request, @AuthenticationPrincipal User user) {
+//        int roomId = Integer.parseInt(request.getParameter("roomId"));
+//        String[] from = request.getParameter("from").split("-");
+//        String[] to = request.getParameter("to").split("-" );
+//        LocalDate fromDate = LocalDate.of(Integer.parseInt(from[0]), Integer.parseInt(from[1]), Integer.parseInt(from[2]));
+//        LocalDate toDate = LocalDate.of(Integer.parseInt(to[0]), Integer.parseInt(to[1]), Integer.parseInt(to[2]));
+//        Booking booking = new Booking(fromDate, toDate, user.getId().intValue(), roomId);
+//        bookingService.save(booking);
+//        System.out.println("Done!");
+//    }
 
 
 

@@ -3,6 +3,7 @@ package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -18,7 +19,11 @@ public class Booking {
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
     private boolean isConfirm;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
     private Integer userId;
     private Integer roomId;
@@ -30,8 +35,8 @@ public class Booking {
 
     public Booking() { } //For JPA Entity;
 
-    public Booking(boolean isConfirm, LocalDate checkIn, LocalDate checkOut, Integer userId, Integer roomId) {
-        this.isConfirm = isConfirm;
+    public Booking(LocalDate checkIn, LocalDate checkOut, Integer userId, Integer roomId) {
+        isConfirm = true;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.userId = userId;
@@ -90,7 +95,7 @@ public class Booking {
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner("|", "Booking [", "]");
-        joiner.add("Id =" + Id).add("Check in date = " + checkIn).add("Check out date = "+checkOut).add("Confirm = " + isConfirm);
+        joiner.add("Room id =" + roomId).add("Check in date = " + checkIn).add("Check out date = "+checkOut).add("Confirm = " + isConfirm);
         return joiner.toString();
     }
 }

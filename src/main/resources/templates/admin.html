@@ -10,9 +10,8 @@
 <div th:insert="/parts/navbar :: menu"></div>
 <p>Эта страница - панель администратора</p>
 <div class="row">
-    <div class="col-2">
-    </div>
-    <div class="col-6">
+    <div class="col-4"></div>
+    <div class="col-4">
         <ul class="nav">
             <li class="admin nav-item" id="users">
                 <a class="nav-link">Пользователи</a>
@@ -24,7 +23,13 @@
                 <a class="nav-link">Бронирования</a>
             </li>
         </ul>
-        <table id="table" class="table table-hover align-middle">
+    </div>
+    <div class="col-4"></div>
+</div>
+<div class="row">
+    <div class="col-auto"></div>
+    <div class="col-auto">
+        <table id="table" class="table table-hover align-middle" style="margin: auto">
             <thead>
             <tr id="head">
 

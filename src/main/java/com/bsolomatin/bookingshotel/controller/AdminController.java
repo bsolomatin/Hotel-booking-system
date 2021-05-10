@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
     @Autowired
@@ -28,32 +29,50 @@ public class AdminController {
     private BookingService bookingService;
 
     @GetMapping("users")
-    public List<User> userList() {
-        return userService.findAll();
-    }
-
-    @GetMapping("users/{id}")
-    public String userEditForm(@PathVariable String id, Model model) {
-        User user = userService.findById(Long.valueOf(id));
-        model.addAttribute("user", user);
-        return "userEdit";
-    }
-
-    @PostMapping("user")
-    public String userSave(@RequestParam String username, @RequestParam("userId") String userId) {
-        User user = userService.findById(Long.valueOf(userId));
-        user.setUsername(username);
-        userService.saveUser(user);
-        return "redirect:/users";
-    }
-
-    @GetMapping("rooms")
-    public List<Room> getRooms() {
-        return roomService.findAll();
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "userList";
     }
 
     @GetMapping("bookings")
-    public List<Booking> getBookings() {
-        return bookingService.findAll();
+    public String getBookings(Model model) {
+        model.addAttribute("bookings", bookingService.findAll());
+        return "bookingList";
     }
+
+    @GetMapping("rooms")
+    public String getRooms(Model model) {
+        model.addAttribute("rooms", roomService.findAll());
+        return "roomsList";
+    }
+
+//    @GetMapping("users")
+//    public List<User> userList() {
+//        return userService.findAll();
+//    }
+//
+//    @GetMapping("users/{id}")
+//    public String userEditForm(@PathVariable String id, Model model) {
+//        User user = userService.findById(Long.valueOf(id));
+//        model.addAttribute("user", user);
+//        return "userEdit";
+//    }
+//
+//    @PostMapping("user")
+//    public String userSave(@RequestParam String username, @RequestParam("userId") String userId) {
+//        User user = userService.findById(Long.valueOf(userId));
+//        user.setUsername(username);
+//        userService.saveUser(user);
+//        return "redirect:/users";
+//    }
+//
+//    @GetMapping("rooms")
+//    public List<Room> getRooms() {
+//        return roomService.findAll();
+//    }
+//
+//    @GetMapping("bookings")
+//    public List<Booking> getBookings() {
+//        return bookingService.findAll();
+//    }
 }

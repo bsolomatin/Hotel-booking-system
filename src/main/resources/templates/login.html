@@ -13,18 +13,37 @@
 <div th:if="${param.logout}">
   Вы вышли из своего аккаунта
 </div>
-<form action="/login" method="post">
-  <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>
-  <div><label> Пароль: <input type="password" name="password"/> </label></div>
-  <div><input type="submit" value="Войти"/></div>
-</form>
-<a href="/registration">Зарегистрироваться</a>
-<button id="test" value="Button">Konpka</button>
-<div>
-  <table id="table">
-
-  </table>
+<!--<form action="/login" method="post">-->
+<!--  <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>-->
+<!--  <div><label> Пароль: <input type="password" name="password"/> </label></div>-->
+<!--  <div><input type="submit" value="Войти"/></div>-->
+<!--</form>-->
+<div class="row">
+<div class="col-2 col-lg-4"></div>
+  <div class="col-8">
+    <form class="form-horizontal" method="POST" action="/login">
+      <div class="form-group">
+        <label for="username" class="col-xs-2 control-label">Имя пользователя</label>
+        <div class="col-xs-10 col-lg-5">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Имя пользователя">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-xs-2 control-label">Пароль</label>
+        <div class="col-xs-10 col-lg-5">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Пароль">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10 col-lg-offset-5 col-lg-5">
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+<a href="/registration">Ещё нет аккаунта? Зарегистрироваться</a>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 </body>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список бронирований</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+<div th:include="/parts/navbar :: menu"></div>
+<div th:include="/parts/adminNavigation :: adminNav" class="mt-5"></div>
+<div class="row mt-5">
+  <div class="col-3"></div>
+  <div class="col-auto">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Номер комнаты</th>
+        <th>Дата заезда</th>
+        <th>Дата выезда</th>
+        <th>ID владельца брони</th>
+        <th>Подтверждение брони</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}"></td>
+        <td th:text="${booking.roomId}"></td>
+        <td th:text="${booking.checkIn}"></td>
+        <td th:text="${booking.checkOut}"></td>
+        <td th:text="${booking.userId}"></td>
+        <td th:text="${booking.isConfirm}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6"></div>
+</div>
+</body>
+</html>

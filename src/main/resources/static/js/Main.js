@@ -60,6 +60,21 @@ $.fn.refreshTable = function (data) {
     })
 }
 
+$("#blockForm").on('submit', function (e) {
+    e.preventDefault();
+    let formData = new FormData(document.getElementById("blockForm"));
+    console.log(formData.entries());
+    $.ajax({
+        processData: false,
+        contentType: false,
+        type: "POST",
+        url: "/test",
+        data:formData,
+        success: function(data) {
+            alert(data);
+        }
+    })
+})
 
 
 //Select DISTINCT room_id From hotel.booking Where NOT ((check_in, check_out) OVERLAPS ('2021-05-04', '2021-05-06'))

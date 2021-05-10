@@ -22,6 +22,9 @@ public class MainController {
         return "error";
     }
 
+    @GetMapping("/block")
+    public String getBlock() { return "index";}
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public String admin() {return "admin";}

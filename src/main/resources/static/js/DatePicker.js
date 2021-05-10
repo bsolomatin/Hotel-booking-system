@@ -20,7 +20,6 @@
 let reservations = new Array();
 
 function createReservationIntervals(data) {
-    console.warn(data);
     reservations = [];
     for (let i = 0; i < data.length; i++) {
         let arr = new Array(data[i].checkIn, data[i].checkOut);
@@ -29,7 +28,7 @@ function createReservationIntervals(data) {
 }
 
 $(function () {
-    $("#from").datepicker({
+    $("#checkIn").datepicker({
         minDate: 0,
         dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
@@ -44,11 +43,11 @@ $(function () {
             return [reservations.indexOf(date) == -1];
         },
         onSelect: function(selectedDate) {
-          $("#to").datepicker("option", "minDate", selectedDate);
+          $("#checkOut").datepicker("option", "minDate", selectedDate);
         }
     })
 
-    $("#to").datepicker({
+    $("#checkOut").datepicker({
         dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
             for (let i = 0; i < reservations.length; i++) {
@@ -63,8 +62,8 @@ $(function () {
         },
         onSelect: function (date) {
             let flag = true;
-            let fromDate = $("#from").datepicker('getDate');
-            let toDate = $("#to").datepicker('getDate');
+            let fromDate = $("#checkIn").datepicker('getDate');
+            let toDate = $("#checkOut").datepicker('getDate');
             for (let i = new Date(fromDate); i <= toDate; i.setDate(i.getDate() + 1)) {
                 for(let j = 0; j < reservations.length; j++) {
                     if(reservations[j][0].indexOf(jQuery.datepicker.formatDate('yy-mm-dd', i)) != -1 ||
@@ -74,11 +73,11 @@ $(function () {
                 }
             }
             if (!flag) {
-                $($("#to").val(""));
+                $($("#checkOut").val(""));
                 alert("Test");
             }
 
-            $("#from").datepicker("option", "maxDate", date);
+            $("#checkIn").datepicker("option", "maxDate", date);
         }
     })
 })

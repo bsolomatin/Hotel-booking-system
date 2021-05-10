@@ -9,11 +9,11 @@
 </head>
 <body>
 <div th:insert="parts/navbar :: menu"></div>
-<div id="test_booking mt-5">
+<div id="test_booking" class="mt-5">
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <div class="row row-cols-1 row-cols-md-3 g-4 cardBody">
+            <div class="row row-cols-1 row-cols-md-2 g-4 cardBody">
             </div>
         </div>
         <div class="col-2"></div>
@@ -27,12 +27,12 @@
                 <h5 class="modal-title" id="exampleModalLabel">Бронирование</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="/block" id="blockForm">
+            <form method="POST" action="/block" id="blockForm" modelAttribute="booking">
             <div class="modal-body">
-                    <label for="from" class="form-label">Дата заезда</label>
-                    <input type="text" data-date-format="yyyy-mm-dd" id="from" class="datepicker form-control" name="from" required/>
-                    <label for="to"  class=" form-label">Дата выезда</label>
-                    <input type="text" data-date-format="yyyy-mm-dd" id="to" class="datepicker form-control" name="to" required/>
+                    <label for="checkIn" class="form-label">Дата заезда</label>
+                    <input type="text" data-date-format="yyyy-mm-dd" id="checkIn" class="datepicker form-control" name="checkIn" required/>
+                    <label for="checkOut"  class=" form-label">Дата выезда</label>
+                    <input type="text" data-date-format="yyyy-mm-dd" id="checkOut" class="datepicker form-control" name="checkOut" required/>
                     <input type="hidden" id="roomId" name="roomId" value=""/>
             </div>
             <div class="modal-footer">
