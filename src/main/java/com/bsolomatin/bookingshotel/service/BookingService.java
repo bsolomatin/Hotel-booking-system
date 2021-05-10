@@ -12,4 +12,5 @@ public interface BookingService {
     void save(Booking booking);
     List<Booking> findAll();
     List<Booking> getReservationByRoom(int roomId);
+    List<Booking> getReservationByUser(int userId);
 }

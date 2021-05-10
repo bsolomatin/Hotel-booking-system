@@ -17,6 +17,11 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String getError() {
+        return "error";
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public String admin() {return "admin";}

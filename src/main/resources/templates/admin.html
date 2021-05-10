@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-2">
     </div>
-    <div class="col-5">
+    <div class="col-6">
         <ul class="nav">
             <li class="admin nav-item" id="users">
                 <a class="nav-link">Пользователи</a>
@@ -24,10 +24,15 @@
                 <a class="nav-link">Бронирования</a>
             </li>
         </ul>
-    </div>
-    <div>
-        <table id="table">
+        <table id="table" class="table table-hover align-middle">
+            <thead>
+            <tr id="head">
 
+            </tr>
+            </thead>
+            <tbody id="body">
+
+            </tbody>
         </table>
     </div>
 </div>
@@ -35,4 +40,5 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
+<script src="text/javascript" th:src="@{/js/Requests.js}"></script>
 </html>

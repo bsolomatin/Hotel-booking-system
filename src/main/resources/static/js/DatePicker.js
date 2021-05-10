@@ -20,7 +20,8 @@
 let reservations = new Array();
 
 function createReservationIntervals(data) {
-    reservations = new Array();
+    console.warn(data);
+    reservations = [];
     for (let i = 0; i < data.length; i++) {
         let arr = new Array(data[i].checkIn, data[i].checkOut);
         reservations.push(arr);
@@ -29,6 +30,7 @@ function createReservationIntervals(data) {
 
 $(function () {
     $("#from").datepicker({
+        minDate: 0,
         dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
             for (let i = 0; i < reservations.length; i++) {
@@ -40,6 +42,9 @@ $(function () {
                 if (date >= from.getTime() && date <= to) return false;
             }
             return [reservations.indexOf(date) == -1];
+        },
+        onSelect: function(selectedDate) {
+          $("#to").datepicker("option", "minDate", selectedDate);
         }
     })
 
@@ -72,6 +77,8 @@ $(function () {
                 $($("#to").val(""));
                 alert("Test");
             }
+
+            $("#from").datepicker("option", "maxDate", date);
         }
     })
 })

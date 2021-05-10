@@ -22,7 +22,10 @@ public interface BookingsRepository extends JpaRepository<Booking, Long> {
     @Query(value = "Select * From hotel.booking Where id = :ids", nativeQuery = true)
     Booking findByBookingId(@Param("ids") Long id);
 
-    @Query(value = "Select * From hotel.booking Where room_id = :id",nativeQuery = true)
+    @Query(value = "Select * From hotel.booking Where room_id = :id", nativeQuery = true)
     List<Booking> getReservationByRoom(@Param("id") int id);
+
+    @Query(value = "Select * From hotel.booking Where user_id = :id", nativeQuery = true)
+    List<Booking> getReservationByUser(@Param("id") int id);
 
 }

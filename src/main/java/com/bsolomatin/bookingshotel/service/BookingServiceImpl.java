@@ -42,6 +42,11 @@ public class BookingServiceImpl implements BookingService{
         return bookingsRepository.getReservationByRoom(roomId);
     }
 
+    @Override
+    public List<Booking> getReservationByUser(int userId) {
+        return bookingsRepository.getReservationByUser(userId);
+    }
+
     public boolean canReserve(Long id, LocalDate d1, LocalDate d2) {
         return bookingsRepository.bookingListById(id,d1,d2).size() == 0;
     }

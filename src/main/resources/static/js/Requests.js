@@ -13,7 +13,6 @@ function request(method, url, obj = null, callback) {
 
 function sendRequest(method, url, obj) {
     return new Promise((resolve, reject) => {
-        console.warn("Promise " + url);
         request(method, `http://localhost:8080/${url}`, obj, (err, data) => {
             if (err) {
                 reject(err)

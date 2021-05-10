@@ -1,9 +1,7 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
     sendRequest("GET", `rooms`)
         .then((data) => showRooms(JSON.parse(data)))
-        //.catch((error) => sendRequest("GET", "/error"));
+        .catch((error) => sendRequest("GET", "/error"));
 })
 
 function showRooms(data) {
@@ -33,28 +31,32 @@ function modalClick(btn) {
     $("#exampleModal").modal('toggle');
 }
 
-// $('#blockForm').on('submit', function(event) {
-//     event.preventDefault();
-//
-// })
-
-
 $(".admin.nav-item").click(function () {
     sendRequest("GET", `admin/${$(this).attr("id")}`)
-        .then((data) => console.log(data))
-        //$.fn.refreshTable(JSON.parse(data)))
+        .then((data) => $.fn.refreshTable(JSON.parse(data)))
         .catch((error) => new Error());
 })
 
 $.fn.refreshTable = function (data) {
     $("#table").empty();
+    $("#table").append(`<thead><tr id="head"></tr></thead>`);
+    $("#table").append(`<tbody id="body"></tbody>`)
+    let str = ``;
     $.each(data, function (i, item) {
-        $("#table").append('<tr>');
+        str =`<tr>`;
+        //$("#body").append('<tr>');
         $.each(item, function (j, itemValue) {
-            if (i == 0) $("#table").append($(`<th>${j}</th>`));
-            else $("#table").append($(`<td>${itemValue}</td>`))
+            if (i == 0) {
+                $("#head").append($(`<th>${j}</th>`));
+            }
+            else {
+                str+=`<td>${itemValue}</td>`;
+                //$("#body").append($(`<td>${itemValue}</td>`))
+            }
         })
-        $("#table").append("</tr>");
+        str+=`</tr>`;
+        $("#body").append(str);
+        //$("#body").append("</tr>");
     })
 }
 

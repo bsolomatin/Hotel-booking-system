@@ -1,6 +1,10 @@
 package com.bsolomatin.bookingshotel.controller;
 
+import com.bsolomatin.bookingshotel.domain.Booking;
+import com.bsolomatin.bookingshotel.domain.Room;
 import com.bsolomatin.bookingshotel.domain.User;
+import com.bsolomatin.bookingshotel.service.BookingService;
+import com.bsolomatin.bookingshotel.service.RoomService;
 import com.bsolomatin.bookingshotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,8 +17,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @GetMapping("users")
     public List<User> userList() {
@@ -34,5 +45,15 @@ public class AdminController {
         user.setUsername(username);
         userService.saveUser(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("rooms")
+    public List<Room> getRooms() {
+        return roomService.findAll();
+    }
+
+    @GetMapping("bookings")
+    public List<Booking> getBookings() {
+        return bookingService.findAll();
     }
 }
