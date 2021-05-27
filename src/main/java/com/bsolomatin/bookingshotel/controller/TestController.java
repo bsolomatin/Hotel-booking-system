@@ -2,12 +2,16 @@ package com.bsolomatin.bookingshotel.controller;
 
 import com.bsolomatin.bookingshotel.domain.Booking;
 import com.bsolomatin.bookingshotel.domain.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
-@RestController
+//@RestController
+@Controller
 public class TestController {
 
 //    @PostMapping("/test")
@@ -17,10 +21,15 @@ public class TestController {
 //        return "done";
 //    }
 
+//    @PostMapping("/test")
+//    public String getData(@ModelAttribute("booking")Booking booking) {
+//        System.out.println(booking.toString());
+//        return "done";
+//    }
     @PostMapping("/test")
-    public String getData(@ModelAttribute("booking")Booking booking) {
+    public ResponseEntity getData(@ModelAttribute("booking")Booking booking) {
         System.out.println(booking.toString());
-        return "done";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 //    @PostMapping("/test")

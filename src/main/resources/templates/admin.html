@@ -8,24 +8,7 @@
 </head>
 <body>
 <div th:insert="/parts/navbar :: menu"></div>
-<p>Эта страница - панель администратора</p>
-<div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-        <ul class="nav">
-            <li class="admin nav-item" id="users">
-                <a class="nav-link">Пользователи</a>
-            </li>
-            <li class="admin nav-item" id="rooms">
-                <a class="nav-link">Комнаты</a>
-            </li>
-            <li class="admin nav-item" id="bookings">
-                <a class="nav-link">Бронирования</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-4"></div>
-</div>
+<div th:include="/parts/adminNavigation :: adminNav" class="mt-5"></div>
 <div class="row">
     <div class="col-auto"></div>
     <div class="col-auto">

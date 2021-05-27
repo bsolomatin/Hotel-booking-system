@@ -10,7 +10,7 @@ function showRooms(data) {
         <div class="col">
             <div class="card text-center" style="width: 18rem">
                 <div class="card-body">
-                    <h5 class="card-title">Комната № ${data[i].id}</h5>
+                    <h5 class="card-title">Номер ${data[i].id}</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Этаж № ${data[i].flat}</li>
                         <li class="list-group-item">Количество кроватей: ${data[i].numberOfBed}</li>
