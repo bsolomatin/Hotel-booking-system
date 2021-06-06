@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div th:insert="parts/navbar :: menu"></div>
+<div th:insert="fragments/navbar :: menu"></div>
 <div th:if="${param.error}">
   Не найдена комбинация логина и пароля, попробуйте снова
 </div>

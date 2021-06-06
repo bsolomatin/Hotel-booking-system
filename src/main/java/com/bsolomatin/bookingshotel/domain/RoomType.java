@@ -12,6 +12,8 @@ public class RoomType {
 
     @OneToMany(mappedBy = "roomType", fetch = FetchType.EAGER)
     private List<Room> roomList;
+    //Select room r from room join booking b where bookingsdate// and r.roomtype = :roomType
+
     private String title;
     private int numberOfRooms;
     private double price;

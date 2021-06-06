@@ -1,7 +1,23 @@
-document.addEventListener("DOMContentLoaded", function() {
-    sendRequest("GET", `rooms`)
-        .then((data) => showRooms(JSON.parse(data)))
-        .catch((error) => sendRequest("GET", "/error"));
+// document.addEventListener("DOMContentLoaded", function() {
+//     sendRequest("GET", `rooms`)
+//         .then((data) => showRooms(JSON.parse(data)))
+//         .catch((error) => sendRequest("GET", "/error"));
+// })
+
+$("#search").on('submit', function(event) {
+    event.preventDefault();
+    let formData = new FormData(document.getElementById("search"));
+    //console.log($("#search").serialize());
+    $.ajax({
+        processData: false,
+        contentType: false,
+        type: "POST",
+        url: "/search",
+        data: formData,
+        success: function(data) {
+            showRooms(data);
+        }
+    })
 })
 
 function showRooms(data) {
@@ -9,12 +25,13 @@ function showRooms(data) {
         $(".cardBody").append(`
         <div class="col">
             <div class="card text-center" style="width: 18rem">
+            <img src = "/images/pexels-max-vakhtbovych-6782567.jpg" class="card-img-top" alt="Hotel room">
                 <div class="card-body">
-                    <h5 class="card-title">Номер ${data[i].id}</h5>
+                    <h5 class="card-title">${data[i].roomType.title}</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Этаж № ${data[i].flat}</li>
-                        <li class="list-group-item">Количество кроватей: ${data[i].numberOfBed}</li>
-                        <li class="list-group-item">Цена за сутки, рублей: ${data[i].price}</li>
+                        //<li class="list-group-item">Этаж № ${data[i].flat}</li>
+                        <li class="list-group-item">Количество комнат: ${data[i].roomType.numberOfRooms}</li>
+                        <li class="list-group-item">Цена за сутки, рублей: ${data[i].roomType.price}</li>
                     </ul>
                     <p class="card-text">Кликните по кнопке ниже, чтобы проверить наличие свободных дат</p>
                     <button type="button" id="${data[i].id}" class="btn btn-primary" onclick="modalClick(this)">Бронирование</input>      

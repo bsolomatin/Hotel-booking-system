@@ -1,0 +1,44 @@
+.navbar {
+    position: fixed;
+}
+
+.container {
+    min-width: 100%;
+}
+
+.searchForm {
+    background-color: #ededed;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.searchForm > .btn {
+    min-width: 100%;
+}
+
+.cIn::before {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Roboto;
+    content: "Дата заезда";
+    position: absolute;
+    margin-left: 5px;
+}
+
+.cOut::before {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Roboto;
+    content: "Дата выезда";
+    position: absolute;
+    margin-left: 5px;
+}
+
+.guest::before {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Roboto;
+    content: "Гостей";
+    position: absolute;
+    margin-left: 5px;
+}

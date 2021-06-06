@@ -3,23 +3,13 @@ package com.bsolomatin.bookingshotel.controller;
 import com.bsolomatin.bookingshotel.domain.Booking;
 import com.bsolomatin.bookingshotel.domain.Room;
 import com.bsolomatin.bookingshotel.domain.User;
-import com.bsolomatin.bookingshotel.repository.BookingsRepository;
-import com.bsolomatin.bookingshotel.repository.RoomsRepository;
 import com.bsolomatin.bookingshotel.service.BookingService;
 import com.bsolomatin.bookingshotel.service.RoomService;
 import com.bsolomatin.bookingshotel.service.UserService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,6 +25,15 @@ public class Controller {
 
     @Autowired
     private UserService userService;
+
+    @PostMapping("search")
+    public List<Room> getSearchResult(@RequestParam("cI") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
+                                  @RequestParam("cO") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
+                                  @RequestParam("count")Integer count) {
+        List<Room> list = roomService.getRoomsByIdNotIn(checkIn, checkOut);
+        if(list != null) return list;
+        else return roomService.findAll();
+    }
 
     @GetMapping("users")
     public List<User> getUsers() {return userService.findAll();}
