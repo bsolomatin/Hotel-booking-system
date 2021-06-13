@@ -1,10 +1,15 @@
 package com.bsolomatin.bookingshotel.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class RoomType {
+
+    //TODO
+    //Добавь опции  в виде связей @OneToMany @ManyToOne с типом комнаты, канал Follow the White rabbit
 
     @Id
     @org.springframework.data.annotation.Id
@@ -17,6 +22,11 @@ public class RoomType {
     private String title;
     private int numberOfRooms;
     private double price;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name="type_features",
+            joinColumns = { @JoinColumn(name="type_id") },
+            inverseJoinColumns = { @JoinColumn(name="feature_id") })
+    private Set<Feature> features = new HashSet<>();
 
     public RoomType() {} // for JPA
 
@@ -58,5 +68,13 @@ public class RoomType {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Set<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(Set<Feature> features) {
+        this.features = features;
     }
 }

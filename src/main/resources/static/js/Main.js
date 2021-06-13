@@ -4,7 +4,7 @@
 //         .catch((error) => sendRequest("GET", "/error"));
 // })
 
-$("#search").on('submit', function(event) {
+$("#search").on('submit', function (event) {
     event.preventDefault();
     let formData = new FormData(document.getElementById("search"));
     //console.log($("#search").serialize());
@@ -14,7 +14,7 @@ $("#search").on('submit', function(event) {
         type: "POST",
         url: "/search",
         data: formData,
-        success: function(data) {
+        success: function (data) {
             showRooms(data);
         }
     })
@@ -23,9 +23,33 @@ $("#search").on('submit', function(event) {
 function showRooms(data) {
     for (let i = 0; i < data.length; i++) {
         $(".cardBody").append(`
-        <div class="col">
-            <div class="card text-center" style="width: 18rem">
-            <img src = "/images/pexels-max-vakhtbovych-6782567.jpg" class="card-img-top" alt="Hotel room">
+<div class="card text-center" style="width:18rem">
+        <div id="carouselExampleIndicators${i}" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators${i}" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators${i}" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators$[i}" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="https://picsum.photos/1920/1080?random=1" alt="Photo">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://picsum.photos/1920/1080?random=2" alt="Photo">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://picsum.photos/1920/1080?random=3" alt="Photo">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators${i}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators${i}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
                 <div class="card-body">
                     <h5 class="card-title">${data[i].roomType.title}</h5>
                     <ul class="list-group list-group-flush">
@@ -36,7 +60,6 @@ function showRooms(data) {
                     <p class="card-text">Кликните по кнопке ниже, чтобы проверить наличие свободных дат</p>
                     <button type="button" id="${data[i].id}" class="btn btn-primary" onclick="modalClick(this)">Бронирование</input>      
                 </div>
-            </div>
         </div>`);
     }
 }
@@ -60,18 +83,17 @@ $.fn.refreshTable = function (data) {
     $("#table").append(`<tbody id="body"></tbody>`)
     let str = ``;
     $.each(data, function (i, item) {
-        str =`<tr>`;
+        str = `<tr>`;
         //$("#body").append('<tr>');
         $.each(item, function (j, itemValue) {
             if (i == 0) {
                 $("#head").append($(`<th>${j}</th>`));
-            }
-            else {
-                str+=`<td>${itemValue}</td>`;
+            } else {
+                str += `<td>${itemValue}</td>`;
                 //$("#body").append($(`<td>${itemValue}</td>`))
             }
         })
-        str+=`</tr>`;
+        str += `</tr>`;
         $("#body").append(str);
         //$("#body").append("</tr>");
     })
@@ -86,8 +108,8 @@ $("#blockForm").on('submit', function (e) {
         contentType: false,
         type: "POST",
         url: "/test",
-        data:formData,
-        success: function(data) {
+        data: formData,
+        success: function (data) {
             alert(data);
         }
     })
