@@ -4,6 +4,7 @@ package com.bsolomatin.bookingshotel.service;
 import com.bsolomatin.bookingshotel.domain.Role;
 import com.bsolomatin.bookingshotel.domain.User;
 import com.bsolomatin.bookingshotel.repository.UsersRepository;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

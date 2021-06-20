@@ -28,4 +28,8 @@ public class MainController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public String admin() {return "admin";}
+
+    @PreAuthorize("hasAuthority('MANAGER')")
+    @GetMapping("/manager")
+    public String manager() {return "manager";}
 }

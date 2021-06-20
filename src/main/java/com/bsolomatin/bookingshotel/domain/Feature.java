@@ -1,5 +1,7 @@
 package com.bsolomatin.bookingshotel.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,13 +11,14 @@ import java.util.Set;
 public class Feature {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String icon;
     @Column(unique = true)
     private String description;
+    @JsonBackReference
     @ManyToMany(mappedBy = "features")
-    private Set<RoomType> roomTypeSet = new HashSet<>();
+    private Set<RoomType> roomTypeSet;
 
     public Feature() {} //For JPA
 
@@ -28,7 +31,6 @@ public class Feature {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
@@ -49,4 +51,19 @@ public class Feature {
         this.description = description;
     }
 
+    public Set<RoomType> getRoomTypeSet() {
+        return roomTypeSet;
+    }
+
+    public void setRoomTypeSet(Set<RoomType> roomTypeSet) {
+        this.roomTypeSet = roomTypeSet;
+    }
+
+    @Override
+    public String toString() {
+        return "Feature{" +
+                "id=" + id +
+                ", icon='" + icon + '\'' +
+                ", description='" + description + "}";
+    }
 }

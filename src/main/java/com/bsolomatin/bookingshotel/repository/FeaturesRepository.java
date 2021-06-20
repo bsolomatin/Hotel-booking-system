@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeaturesRepository extends JpaRepository<Feature, Long> {
+    Feature findByDescription(String description);
 }

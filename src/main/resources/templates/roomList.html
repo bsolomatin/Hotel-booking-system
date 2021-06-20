@@ -1,0 +1,126 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <table th:fragment="rooms" class="table table-bordered table-hover table-stripped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Тип комнаты</th>
+            <th>Редактировать</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.id}"></td>
+            <td th:text="${room.roomType.title}"></td>
+            <td><button th:data-id="${room.id}" type="button" class="btn iconBtn" onclick="editRoom(this.getAttribute('data-id'))"><i class="fas fa-edit"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+
+<div th:fragment="room">
+    <form method="POST" onsubmit="saveRoom(); return false;" class="form-horizontal" id="saveRoom">
+        <div class="form-group">
+            <label class="col-md-2 control-label">ID</label>
+            <input type="number" th:value="${room.id}" id="roomId" name="roomId" readonly>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Тип комнаты</label>
+            <select class="form-control" id="roomType" name="roomType" required>
+                <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.title}"></option>
+            </select>
+        </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <div id="statusMessage"></div>
+    </form>
+</div>
+    <table th:fragment="types" class="table table-bordered table-hover table-stripped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Количество комнат</th>
+            <th>Цена</th>
+            <th>Описание</th>
+            <th>Редактировать</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="type : ${types}">
+            <td th:text="${type.id}"></td>
+            <td th:text="${type.title}"></td>
+            <td th:text="${type.numberOfRooms}"></td>
+            <td th:text="${type.price}"></td>
+            <td th:text="${type.description}"></td>
+            <td><button th:data-id="${type.id}" type="button" class="btn iconBtn" onclick="editType(this.getAttribute('data-id'))"><i class="fas fa-edit"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+
+<div th:fragment="type">
+    <form onsubmit="saveType(); return false;" modelAttribute="roomType" method="POST" id="saveType" class="form-horizontal">
+        <input type="number" readonly th:value="${type.id}" name="id">
+        <input type="text" required th:value="${type.title}" id="title" name="title"/>
+        <input type="number" requird th:value="${type.numberOfRooms}" id="numberOfRooms" name="numberOfRooms"/>
+        <input type="number" required th:value="${type.price}" id="price" name="price"/>
+        <input type="text" required th:value="${type.description}" id="description" name="description">
+        <select required multiple id="features" name="features">
+            <option th:each="feature : ${features}" th:text="${feature.description}" th:value="${feature.id}"
+                    th:selected="${#lists.contains(type.features, feature)}"></option>
+        </select>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>
+    <table th:fragment="bookings" class="table table-bordered table-hover table-stripped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Номер</th>
+            <th>Дата заезда</th>
+            <th>Дата выезда</th>
+            <th>Id пользователя</th>
+            <th>Подтверждение брони</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.id}"></td>
+            <td th:text="${booking.roomId}"></td>
+            <td th:text="${booking.checkIn}"></td>
+            <td th:text="${booking.checkOut}"></td>
+            <td th:text="${booking.userId}"></td>
+            <td th:text="${booking.isConfirm}"></td>
+            <td><button th:data-id="${booking.id}" type="button" class="btn iconBtn" onclick="editBooking(this.getAttribute('data-id'))"><i class="fas fa-edit"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table th:fragment="features" class="table table-bordered table-hover table-stripped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Иконка</th>
+            <th>Описание</th>
+            <th>Редактирование</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="feature : ${features}">
+            <td th:text="${feature.id}"></td>
+            <td th:text="${feature.icon}"></td>
+            <td th:text="${feature.description}"></td>
+            <td><button th:data-id="${feature.id}" type="button" class="btn iconBtn" onclick="editFeature(this.getAttribute('data-id'))"><i class="fas fa-edit"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:fragment="feature">
+        <form action="editFeature()" method="POST" id="saveFeature" modelAttribute="feature" class="form-horizontal">
+            <input type="text">
+            <input type="text" name="icon" th:value="${feature.icon}" required />
+            <input type="text"  name="description" th:value="${feature.description}" required/>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</body>
+</html>

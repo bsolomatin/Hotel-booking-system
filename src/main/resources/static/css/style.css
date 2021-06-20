@@ -1,6 +1,6 @@
-.navbar {
-    position: fixed;
-}
+/*.navbar {*/
+/*    position: fixed;*/
+/*}*/
 
 .container {
     min-width: 100%;
@@ -41,4 +41,8 @@
     content: "Гостей";
     position: absolute;
     margin-left: 5px;
+}
+
+.fbody {
+    background-color: grey;
 }

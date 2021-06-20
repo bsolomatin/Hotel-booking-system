@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Controller
 public class SignUpController {
@@ -19,11 +24,12 @@ public class SignUpController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping(value = "/registration", produces = "text/html")
-    public String registration() {return "registration";}
+    @GetMapping(value = "/registration")
+    public String registration() {
+        return "registration";}
 
     @PostMapping("/registration")
-    public String addUser(@Valid User user, BindingResult bindingResult) {
+    public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
         User userFromDb = userService.findByUserName(user.getUsername());
         if(userFromDb != null) {
             return "registration";

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,15 +21,14 @@ public class User implements UserDetails {
 
     @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
 
-    @NotEmpty(message = "Имя пользователя не может быть пустым")
-    @Size(min = 2, max = 10, message = "Введите имя пользователя от 2-х до 10-ти символов")
     @Column(name="username")
     private String username;
 
+    @JsonIgnore
     @Column(name="password")
     private String password;
 
@@ -45,8 +45,6 @@ public class User implements UserDetails {
     //@JoinTable(name="user_roles", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
     @Enumerated(EnumType.STRING)
     Role roles;
-
-
 
     public User() { } //For JPA Entity
 
@@ -69,16 +67,19 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
@@ -88,6 +89,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(getRoles());
     }

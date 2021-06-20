@@ -20,7 +20,7 @@ public class RoomServiceImpl implements  RoomService{
 
     @Override
     public Room findById(Long id) {
-        return roomsRepository.getOne(id);
+        return roomsRepository.findById(id).get();
     }
 
     @Override
@@ -40,6 +40,13 @@ public class RoomServiceImpl implements  RoomService{
 
     @Override
     public List<Room> getRoomsByIdNotIn(LocalDate d1, LocalDate d2) {
-        return roomsRepository.getRoomsByIdNotIn(d1, d2);
+        List<Room> list = roomsRepository.getRoomsByIdNotIn(d1, d2);
+        if(list == null) {
+            System.err.println("Nothing to show");
+            return roomsRepository.findAll();
+        } else {
+            return list;
+        }
+        //return roomsRepository.getRoomsByIdNotIn(d1, d2);
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:data-date-format="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Booking hotel</title>
+    <title>Гостиница "МГТУ"</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -10,38 +10,29 @@
 </head>
 <body>
 <div th:insert="fragments/navbar :: menu"></div>
-<div class="container">
+<div class="container" id="accordionExample">
     <div class="row searchForm">
         <div class="col-3"></div>
         <div class="col-6">
             <form class="row g-3" method="POST" id="search" name="search" action="/search" modelAttribute="searching">
-                <div class="col-md-3 col-lg-2 cIn">
+                <div class="col-2 col-lg-3 cIn">
                     <input type="date" class="form-control" id="cI" name="cI" required>
                 </div>
-                <div class="col-md-3 col-lg-2 cOut">
+                <div class="col-2 col-lg-3 cOut">
                     <input type="date" class="form-control" id="cO" name="cO" required>
                 </div>
-                <div class="col-md-3 col-lg-3 guest">
-                    <input type="number" min="0" max="4" class="form-control lg-5" id="count" name="count" required>
-                </div>
-                <div class="col-md-3 col-lg-5">
+<!--                <div class="col-md-3 col-lg-3 guest">-->
+<!--                    <input type="number" min="0" max="4" class="form-control lg-5" id="count" name="count" required>-->
+<!--                </div>-->
+                <div class="col-8 col-lg-6">
                     <input type="submit" class="btn btn-dark col-md-3 col-lg-5" value="Забронировать">
                 </div>
             </form>
         </div>
         <div class="col-3"></div>
     </div>
-</div>
-<div id="test_booking" class="mt-5">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="row row-cols-1 row-cols-md-2 g-4 cardBody">
-            </div>
-        </div>
-        <div class="col-2"></div>
+
     </div>
-</div>
 
 
 
@@ -84,6 +75,7 @@
 <!--        }-->
 <!--    })-->
 <!--</script>-->
+<script src="https://kit.fontawesome.com/fa7e75682d.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

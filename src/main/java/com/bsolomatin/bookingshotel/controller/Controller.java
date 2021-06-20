@@ -1,21 +1,25 @@
 package com.bsolomatin.bookingshotel.controller;
 
-import com.bsolomatin.bookingshotel.domain.Booking;
-import com.bsolomatin.bookingshotel.domain.Room;
-import com.bsolomatin.bookingshotel.domain.User;
-import com.bsolomatin.bookingshotel.service.BookingService;
-import com.bsolomatin.bookingshotel.service.RoomService;
-import com.bsolomatin.bookingshotel.service.UserService;
+import com.bsolomatin.bookingshotel.domain.*;
+import com.bsolomatin.bookingshotel.repository.RoomTypeRepository;
+import com.bsolomatin.bookingshotel.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/")
 public class Controller {
+
+    @Autowired
+    private RoomTypeService roomTypeService;
+
+    @Autowired
+    private FeatureService featureService;
 
     @Autowired
     private RoomService roomService;
@@ -28,8 +32,7 @@ public class Controller {
 
     @PostMapping("search")
     public List<Room> getSearchResult(@RequestParam("cI") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
-                                  @RequestParam("cO") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
-                                  @RequestParam("count")Integer count) {
+                                  @RequestParam("cO") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut) {
         List<Room> list = roomService.getRoomsByIdNotIn(checkIn, checkOut);
         if(list != null) return list;
         else return roomService.findAll();
@@ -55,6 +58,9 @@ public class Controller {
 
     @GetMapping("room/{id}")
     public Room getRoom(@PathVariable String id) { return roomService.findById(Long.valueOf(id)); }
+
+
+
 
     //@ResponseStatus(code = HttpStatus.CREATED) // 201
 //    @PostMapping("block")
