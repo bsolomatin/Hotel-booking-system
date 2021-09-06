@@ -11,7 +11,7 @@ public class Room {
 
     @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long Id;
     //@Column(name="Id", unique = true, nullable = false)"
 //

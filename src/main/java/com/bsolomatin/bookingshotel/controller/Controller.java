@@ -5,6 +5,8 @@ import com.bsolomatin.bookingshotel.repository.RoomTypeRepository;
 import com.bsolomatin.bookingshotel.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -29,6 +31,7 @@ public class Controller {
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping("search")
     public List<Room> getSearchResult(@RequestParam("cI") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,

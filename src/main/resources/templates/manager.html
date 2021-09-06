@@ -12,9 +12,17 @@
 <!--<div th:include="/fragments/adminNavigation :: adminNav" class="mt-5"></div>-->
 <div class="container mt-2">
   <ul class="nav nav-tabs" >
-    <li class="admin nav-item" ><a class="nav-link" data-bs-toggle="tab" onclick="getRooms()">Номера</a></li>
-    <li class="admin nav-item"><a class="nav-link" data-bs-toggle="tab" onclick="getTypes()">Типы номеров</a></li>
+    <li class="admin nav-item">
+      <a class="nav-link" data-bs-toggle="tab" onclick="getRooms()">Номера</a>
+      <a class="nav-link" data-bs-toggle="tab" onclick="newRoom()">(+)</a>
+    </li>
+    <li class="admin nav-item">
+      <a class="nav-link" data-bs-toggle="tab" onclick="getTypes()">Типы номеров</a>
+      <a class="nav-link" data-bs-toggle="tab" onclick="newType()">(+)</a>
+    </li>
     <li class="admin nav-item"><a class="nav-link" data-bs-toggle="tab" onclick="getBookings()">Бронирования</a></li>
+    <li class="admin nav-item"><a class="nav-link" data-bs-toggle="tab" onclick="getFeatures()">Характеристики</a></li>
+    <li class="admin nav-item"><a class="nav-link" data-bs-toggle="tab" onclick="getPhotos()">Фотографии</a></li>
   </ul>
   <div class="row">
     <div class="col-lg-2"></div>

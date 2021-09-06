@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface RoomsRepository extends JpaRepository<Room, Long> {
 
-    @Query(value = "Select * From test.room Where test.room.id NOT IN (Select room_id From test.booking Where (check_in, check_out) OVERLAPS (:d1, :d2))",nativeQuery = true)
+    @Query(value = "Select * From fin.room Where fin.room.id NOT IN (Select room_id From fin.booking Where (check_in, check_out) OVERLAPS (:d1, :d2))",nativeQuery = true)
     List<Room> getRoomsByIdNotIn(@Param("d1") LocalDate d1, @Param("d2") LocalDate d2);
 }

@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                    .antMatchers("/", "/registration", "/login", "/bookings/**", "/rooms/**", "/search", "/test", "/gettest", "/files").permitAll()
+                    .antMatchers("/", "/registration", "/login", "/bookings/**", "/rooms/**", "/user/search", "/test", "/gettest", "/files").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -50,9 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(NoOpPasswordEncoder.getInstance())
-//                .usersByUsernameQuery("Select username, password, enabled From hotel.usr Where username=?")
-//                .authoritiesByUsernameQuery("Select username, roles From hotel.usr Where username=?");
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 

@@ -8,4 +8,5 @@ public interface RoomTypeService {
     RoomType findById(Long id);
     List<RoomType> findAll();
     void save(RoomType roomType);
+    void deleteById(Long id);
 }

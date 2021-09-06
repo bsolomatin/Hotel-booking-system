@@ -19,6 +19,11 @@ public class FeatureServiceImpl implements FeatureService{
     }
 
     @Override
+    public Feature findById(Long id) {
+        return featuresRepository.findById(id).get();
+    }
+
+    @Override
     public void saveFeature(Feature feature) {
         featuresRepository.saveAndFlush(feature);
     }

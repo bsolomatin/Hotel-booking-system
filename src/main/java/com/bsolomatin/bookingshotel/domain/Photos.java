@@ -45,4 +45,12 @@ public class Photos {
     public void setImageBase64(String imageBase64) {
         this.imageBase64 = imageBase64;
     }
+
+    public RoomType getRt() {
+        return rt;
+    }
+
+    public void setRt(RoomType rt) {
+        this.rt = rt;
+    }
 }

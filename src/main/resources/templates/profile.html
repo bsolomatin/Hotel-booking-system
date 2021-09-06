@@ -10,6 +10,9 @@
 <div th:insert="/fragments/navbar :: menu"></div>
 <div class="container">
     <h1 class="h1 text-center" th:text="${'Добрый день, ' + user.username}"></h1>
+    <div class="text-center" th:if="${message} != null">
+        <div th:text="${message}"></div>
+    </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 bookings">
@@ -26,6 +29,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="booking : ${bookings}">
+<!--                    th:style="${lastBook != null and lastBook.id == booking.id} ? 'background-color:' : ''-->
                     <td th:text="${booking.id}"></td>
                     <td th:text="${booking.roomId}"></td>
                     <td th:text="${booking.checkIn}"></td>

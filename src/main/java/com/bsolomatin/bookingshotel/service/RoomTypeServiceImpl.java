@@ -27,4 +27,9 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     public void save(RoomType roomType) {
         roomTypeRepository.save(roomType);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        roomTypeRepository.deleteById(id);
+    }
 }

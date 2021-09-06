@@ -16,9 +16,10 @@ public class BookingServiceImpl implements BookingService{
     @Autowired
     private BookingsRepository bookingsRepository;
 
+
     @Override
     public Booking findByBookId(Long id) {
-        return bookingsRepository.findByBookingId(id);
+        return bookingsRepository.findById(id).get();
     }
 
     @Override

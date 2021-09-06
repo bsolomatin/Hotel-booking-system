@@ -1,6 +1,8 @@
 package com.bsolomatin.bookingshotel.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -29,7 +31,7 @@ public class RoomType implements Serializable {
     private double price;
     private String description;
     @JsonManagedReference
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinTable(name="type_features",
             joinColumns = { @JoinColumn(name="type_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name="feature_id", referencedColumnName = "id") })
@@ -93,6 +95,13 @@ public class RoomType implements Serializable {
         this.features = features;
     }
 
+    public List<Photos> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photos> photos) {
+        this.photos = photos;
+    }
 
     @Override
     public String toString() {

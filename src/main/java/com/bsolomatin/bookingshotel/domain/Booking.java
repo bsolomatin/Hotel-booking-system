@@ -15,7 +15,7 @@ public class Booking {
 
     @Id
     @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     //@Column(name="Id", unique = true, nullable = false)
     private Long Id;
     private boolean isConfirm;

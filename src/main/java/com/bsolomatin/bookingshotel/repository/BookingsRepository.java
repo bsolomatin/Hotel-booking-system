@@ -19,13 +19,11 @@ public interface BookingsRepository extends JpaRepository<Booking, Long> {
             @Param("d1") LocalDate d1,
             @Param("d2") LocalDate d2);
 
-    @Query(value = "Select * From hotel.booking Where id = :ids", nativeQuery = true)
-    Booking findByBookingId(@Param("ids") Long id);
 
     @Query(value = "Select * From hotel.booking Where room_id = :id", nativeQuery = true)
     List<Booking> getReservationByRoom(@Param("id") int id);
 
-    @Query(value = "Select * From hotel.booking Where user_id = :id", nativeQuery = true)
+    @Query(value = "Select * From fin.booking Where user_id = :id", nativeQuery = true)
     List<Booking> getReservationByUser(@Param("id") int id);
 
 }

@@ -4,21 +4,21 @@
 //         .catch((error) => sendRequest("GET", "/error"));
 // })
 
-$("#search").on('submit', function (event) {
-    event.preventDefault();
-    let formData = new FormData(document.getElementById("search"));
-    //console.log($("#search").serialize());
-    $.ajax({
-        processData: false,
-        contentType: false,
-        type: "POST",
-        url: "/search",
-        data: formData,
-        success: function (data) {
-            showRooms(data);
-        }
-    })
-})
+// $("#search").on('submit', function (event) {
+//     event.preventDefault();
+//     let formData = new FormData(document.getElementById("search"));
+//     //console.log($("#search").serialize());
+//     $.ajax({
+//         processData: false,
+//         contentType: false,
+//         type: "POST",
+//         url: "/search",
+//         data: formData,
+//         success: function (data) {
+//             showRooms(data);
+//         }
+//     })
+// })
 
 function showRooms(data) {
     console.warn(data);
@@ -215,6 +215,16 @@ $("#testbtn").on("click", function() {
     });
 })
 
+function goSearch() {
+    $.ajax({
+        type: "POST",
+        url: "/user/search",
+        data: $("#search").serializeArray(),
+        success: function(data) {
+            $(".resultForm").html(data);
+        }
+    })
+}
 
 
 
